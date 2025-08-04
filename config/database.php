@@ -20,12 +20,12 @@ return [
             'prefix' => env('DB_PREFIX', ''),
             'pool' => [
                 'min_connections' => 1,
-                // Reduce max connections based on worker count
-                'max_connections' => min(env('DB_MAX_CONNECTIONS', 50), swoole_cpu_num() * 5),
+                // Conservative connection pool - prevent file descriptor exhaustion
+                'max_connections' => min(env('DB_MAX_CONNECTIONS', 20), swoole_cpu_num() * 2),
                 'connect_timeout' => 10.0,
                 'wait_timeout' => 3.0,
-                'heartbeat' => 30, // Enable heartbeat to detect dead connections
-                'max_idle_time' => (float) env('DB_MAX_IDLE_TIME', 30), // Reduce idle time
+                'heartbeat' => 30,
+                'max_idle_time' => (float) env('DB_MAX_IDLE_TIME', 60),
             ],
         ],
 
@@ -40,11 +40,11 @@ return [
             'charset' => env('DB_CHARSET', 'utf8'),
             'pool' => [
                 'min_connections' => 1,
-                'max_connections' => min(env('DB_MAX_CONNECTIONS', 30), swoole_cpu_num() * 3),
+                'max_connections' => min(env('DB_MAX_CONNECTIONS', 15), swoole_cpu_num() * 2),
                 'connect_timeout' => 10.0,
                 'wait_timeout' => 3.0,
                 'heartbeat' => 30,
-                'max_idle_time' => (float) env('DB_MAX_IDLE_TIME', 30),
+                'max_idle_time' => (float) env('DB_MAX_IDLE_TIME', 60),
             ],
         ],
 
@@ -77,13 +77,13 @@ return [
             'port' => (int) env('REDIS_PORT', 6379),
             'db' => (int) env('REDIS_DB', 0),
             'pool' => [
-                'min_connections' => 5,
-                // Reduce Redis connections too
-                'max_connections' => min(env('REDIS_MAX_CONNECTIONS', 50), swoole_cpu_num() * 4),
+                'min_connections' => 2,
+                // Conservative Redis connections
+                'max_connections' => min(env('REDIS_MAX_CONNECTIONS', 15), swoole_cpu_num() * 2),
                 'connect_timeout' => 10.0,
                 'wait_timeout' => 3.0,
                 'heartbeat' => 30,
-                'max_idle_time' => (float) env('REDIS_MAX_IDLE_TIME', 30),
+                'max_idle_time' => (float) env('REDIS_MAX_IDLE_TIME', 60),
             ],
         ],
 
@@ -93,12 +93,12 @@ return [
             'port' => (int) env('REDIS_PORT', 6379),
             'db' => (int) env('REDIS_DB', 1),
             'pool' => [
-                'min_connections' => 5,
-                'max_connections' => min(env('REDIS_MAX_CONNECTIONS', 30), swoole_cpu_num() * 2),
+                'min_connections' => 1,
+                'max_connections' => min(env('REDIS_MAX_CONNECTIONS', 10), swoole_cpu_num()),
                 'connect_timeout' => 10.0,
                 'wait_timeout' => 3.0,
                 'heartbeat' => 30,
-                'max_idle_time' => (float) env('REDIS_MAX_IDLE_TIME', 30),
+                'max_idle_time' => (float) env('REDIS_MAX_IDLE_TIME', 60),
             ],
         ],
     ],
