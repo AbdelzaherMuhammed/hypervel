@@ -28,7 +28,7 @@ class VinDecoderController extends Controller
     protected ValidatorFactoryInterface $validationFactory;
 
     #[Inject]
-    protected ResponseInterface $response;
+    protected ?ResponseInterface $response = null;
 
     #[Inject]
     protected ClientFactory $clientFactory;
