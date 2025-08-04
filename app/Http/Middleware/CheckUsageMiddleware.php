@@ -106,13 +106,13 @@ class CheckUsageMiddleware extends Middleware
             return $response;
 
         } catch (\Throwable $e) {
-            $this->logger->error('Usage middleware error: ' . $e->getMessage(), [
+            $this->logger->error('Usage middleware error: ' . $e->getTraceAsString(), [
                 'vendor_id' => $vendor['id'] ?? null
             ]);
 
             return $this->errorResponse([
                 "success" => false,
-                "message" => $e->getMessage(),
+                "message" => $e->getTraceAsString(),
                 "code" => "ct-0500"
             ], 500);
         }

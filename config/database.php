@@ -32,7 +32,7 @@ return [
             'prefix' => env('DB_PREFIX', ''),
             'pool' => [
                 'min_connections' => 1,
-                'max_connections' => env('DB_MAX_CONNECTIONS', 10),
+                'max_connections' => env('DB_MAX_CONNECTIONS', 200),
                 'connect_timeout' => 10.0,
                 'wait_timeout' => 3.0,
                 'heartbeat' => -1,
@@ -110,8 +110,8 @@ return [
             'port' => (int) env('REDIS_PORT', 6379),
             'db' => (int) env('REDIS_DB', 0),
             'pool' => [
-                'min_connections' => 1,
-                'max_connections' => 10,
+                'min_connections' => 20,
+                'max_connections' => 100,
                 'connect_timeout' => 10.0,
                 'wait_timeout' => 3.0,
                 'heartbeat' => -1,
@@ -125,8 +125,8 @@ return [
             'port' => (int) env('REDIS_PORT', 6379),
             'db' => (int) env('REDIS_DB', 0),
             'pool' => [
-                'min_connections' => 1,
-                'max_connections' => 10,
+                'min_connections' => 20,
+                'max_connections' => 100,
                 'connect_timeout' => 10.0,
                 'wait_timeout' => 3.0,
                 'heartbeat' => -1,
