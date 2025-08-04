@@ -28,7 +28,7 @@ return [
         'document_root' => base_path('public'),
         'enable_static_handler' => true,
         Constant::OPTION_ENABLE_COROUTINE => true,
-        Constant::OPTION_WORKER_NUM => env('SERVER_WORKERS_NUMBER', swoole_cpu_num() * 2),
+        Constant::OPTION_WORKER_NUM => env('SERVER_WORKERS_NUMBER', swoole_cpu_num()),
         Constant::OPTION_PID_FILE => base_path('runtime/hypervel.pid'),
         Constant::OPTION_OPEN_TCP_NODELAY => true,
         Constant::OPTION_MAX_COROUTINE => 100000,
