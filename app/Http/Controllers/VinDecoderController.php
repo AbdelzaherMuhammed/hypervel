@@ -642,7 +642,6 @@ class VinDecoderController extends Controller
                         'request_data' => json_encode($requestData),
                         'response_data' => json_encode($response),
                         'processing_time_ms' => $processingTime,
-                        'user_agent' => $logData['user_agent'] ?? null,
                         'created_at' => date('Y-m-d H:i:s'),
                         'updated_at' => date('Y-m-d H:i:s')
                     ]);
